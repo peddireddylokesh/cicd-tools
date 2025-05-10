@@ -1,7 +1,7 @@
 data "aws_ami" "ami_info" {
     most_recent = true
     
-    owners      = ["897729141306"] # Aws account id of shiva joindevops the owner of the AMI
+    owners      = ["973714476881"] # Aws account id of shiva joindevops the owner of the AMI
     
     filter {
         name   = "name"
