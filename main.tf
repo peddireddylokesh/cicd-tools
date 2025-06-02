@@ -3,7 +3,7 @@ module "jenkins" {
 
   name = "jenkins"
 
-  instance_type          = "t3.small"
+  instance_type          = "t3.medium"
   vpc_security_group_ids = ["sg-0da0764748ad2e0ff"] #replace your SG
   subnet_id = "subnet-076415d51f785cf0e" #replace your Subnet i used a normal one its not belongs to expense project.
   ami = data.aws_ami.ami_info.id
