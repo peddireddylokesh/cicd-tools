@@ -3,9 +3,9 @@ module "jenkins" {
 
   name = "jenkins"
 
-  instance_type          = "t3.medium"
+  instance_type          = "t3.micro"
   vpc_security_group_ids = ["sg-0da0764748ad2e0ff"] #replace your SG
-  subnet_id = "subnet-076415d51f785cf0e" #replace your Subnet i used a normal one its not belongs to expense project.
+  subnet_id = "subnet-076415d51f785cf0e" #replace your Subnet id used a normal one its not belongs to expense project.
   ami = data.aws_ami.ami_info.id
   user_data = file("jenkins.sh")
   tags = {
@@ -27,7 +27,7 @@ module "jenkins_agent" {
 
   name = "jenkins-agent"
 
-  instance_type          = "t3.small"
+  instance_type          = "t3.micro"
   vpc_security_group_ids = ["sg-0da0764748ad2e0ff"] #replace your SG
   subnet_id = "subnet-076415d51f785cf0e" #replace your Subnet
   ami = data.aws_ami.ami_info.id
