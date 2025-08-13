@@ -1,6 +1,12 @@
+# Get VPC ID from subnet
+data "aws_subnet" "selected" {
+  id = "subnet-0f2fcc8d17f8f9a71"
+}
+
 # Security Groups
 resource "aws_security_group" "jenkins_sg" {
-  name = "jenkins-sg"
+  name   = "jenkins-sg"
+  vpc_id = data.aws_subnet.selected.vpc_id  # Use the same VPC as subnet
   
   ingress {
     from_port   = 22
@@ -32,7 +38,8 @@ resource "aws_security_group" "jenkins_sg" {
 }
 
 resource "aws_security_group" "jenkins_agent_sg" {
-  name = "jenkins-agent-sg"
+  name   = "jenkins-agent-sg"
+  vpc_id = data.aws_subnet.selected.vpc_id  # Use the same VPC as subnet
   
   ingress {
     from_port   = 22
