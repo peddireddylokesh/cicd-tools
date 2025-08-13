@@ -3,9 +3,14 @@ data "aws_subnet" "selected" {
   id = "subnet-0f2fcc8d17f8f9a71"
 }
 
+# Random suffix for unique naming
+resource "random_pet" "suffix" {
+  length = 2
+}
+
 # Security Groups
 resource "aws_security_group" "jenkins_sg" {
-  name   = "jenkins-sg"
+  name   = "jenkins-sg-${random_pet.suffix.id}"
   vpc_id = data.aws_subnet.selected.vpc_id  # Use the same VPC as subnet
   
   ingress {
@@ -38,7 +43,7 @@ resource "aws_security_group" "jenkins_sg" {
 }
 
 resource "aws_security_group" "jenkins_agent_sg" {
-  name   = "jenkins-agent-sg"
+  name   = "jenkins-agent-sg-${random_pet.suffix.id}"
   vpc_id = data.aws_subnet.selected.vpc_id  # Use the same VPC as subnet
   
   ingress {
