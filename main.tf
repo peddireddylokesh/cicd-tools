@@ -17,10 +17,10 @@ resource "aws_security_group" "jenkins_sg" {
   }
   
   ingress {
-    from_port       = 50000
-    to_port         = 50000
-    protocol        = "tcp"
-    security_groups = [aws_security_group.jenkins_agent_sg.id]
+    from_port   = 50000
+    to_port     = 50000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Simplified - agent will connect
   }
   
   egress {
@@ -39,13 +39,6 @@ resource "aws_security_group" "jenkins_agent_sg" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
-  
-  ingress {
-    from_port       = 0
-    to_port         = 65535
-    protocol        = "tcp"
-    security_groups = [aws_security_group.jenkins_sg.id]
   }
   
   egress {
