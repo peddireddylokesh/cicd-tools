@@ -73,12 +73,11 @@ module "jenkins" {
   user_data                   = file("jenkins.sh")
   associate_public_ip_address = false
   
-  root_block_device = [
-    {
-      volume_size = 50
-      volume_type = "gp3"
-    }
-  ]
+  root_block_device = {
+    volume_size = 50
+    volume_type = "gp3"
+    delete_on_termination = true
+  }
 }
 
 resource "aws_eip" "jenkins_eip" {
@@ -98,12 +97,11 @@ module "jenkins_agent" {
   user_data                   = file("jenkins-agent.sh")
   associate_public_ip_address = false
   
-  root_block_device = [
-    {
-      volume_size = 50
-      volume_type = "gp3"
-    }
-  ]
+  root_block_device = {
+    volume_size = 50
+    volume_type = "gp3"
+    delete_on_termination = true
+  }
 }
 
 resource "aws_eip" "jenkins_agent_eip" {
