@@ -7,7 +7,7 @@ module "jenkins" {
   vpc_security_group_ids  = ["sg-0df48a4504a56b775"] # replace with your SG
   subnet_id               = "subnet-0f2fcc8d17f8f9a71" # replace with your subnet
   ami                     = data.aws_ami.ami_info.id
-  key_name                = "devops-key" # replace with your key pair
+  key_name                = "devops" # replace with your key pair
   user_data               = file("jenkins.sh")
   associate_public_ip_address = false # We will use EIP instead
 
